@@ -8,7 +8,7 @@
 void printLinkedList(Item *list) {
 	Item *current = list;
 	while(current != NULL) {
-		printf("v = %d, ", current->v);
+		printf("v = %d\n", current->v);
 		current = current->next;
 	}
 	printf("\n");
@@ -28,15 +28,21 @@ void addToLinkedList (Item **list, Item *item) {
  * calls reverseLinkedList to reverse it, and prints it again to see
  * if the order indeed was reversed.
 **/
-void main () {
+void main (int argc, char *argv[]) {
 	int i;
+	int len = 10;
+
+	if (argc > 1) {
+		len = atoi(argv[1]);
+	}
+
 	Item *List = NULL;
-	for (i=0; i<10; i++) {
+	for (i=0; i<len; i++) {
 		Item *item = malloc(sizeof(Item));
-		item->v = 10 - i;
+		item->v = len - i;
 		addToLinkedList(&List, item);
-	}			
-	
+	}
+
 	printLinkedList(List);
 
 	Item *revList = reverseLinkedList(List);
